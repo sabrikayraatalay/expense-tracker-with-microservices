@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/AuthMicroservice" />
+            <option value="$PROJECT_DIR$/ExpenseMicroService" />
             <option value="$PROJECT_DIR$/SharedLibrary" />
           </set>
         </option>

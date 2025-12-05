@@ -1,3 +1,4 @@
 rootProject.name = 'ExpenseTracker'
 include 'SharedLibrary'
 include 'AuthMicroservice'
+include 'ExpenseMicroService'
