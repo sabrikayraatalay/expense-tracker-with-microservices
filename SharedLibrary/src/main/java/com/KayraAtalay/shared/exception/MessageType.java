@@ -11,6 +11,7 @@ public enum MessageType {
     USERNAME_ALREADY_EXISTS("1008", "This username is already exists"),
     USERNAME_OR_PASSWORD_INVALID("1009", "Wrong username or password"),
     REFRESH_TOKEN_NOT_FOUND("1010", "Could not find the refresh token"),
+    EXPENSE_NOT_FOUND("1011", "Could not find the expense"),
     REFRESH_TOKEN_EXPIRED("1011", "This refresh token is expired");
 
     private String code;

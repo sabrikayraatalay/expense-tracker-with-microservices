@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-@FeignClient(url = "http://localhost:9090/rest/api/expense-tracker-auth", name = "userManager")
+@FeignClient(url = "http://localhost:9090/expense-tracker-auth", name = "userManager")
 public interface UserManager {
 
     @GetMapping("/find-user-id-by-username")
