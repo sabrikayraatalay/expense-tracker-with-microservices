@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Builder
 public class Expense extends BaseEntity {
 
-    @Column
+    @Column(name = "user_id")
     private Long userId;
 
     @Column

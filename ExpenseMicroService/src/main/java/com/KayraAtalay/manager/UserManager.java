@@ -1,0 +1,13 @@
+package com.KayraAtalay.manager;
+
+import com.KayraAtalay.shared.response.RootEntity;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
+@FeignClient(url = "http://localhost:9090/rest/api/expense-tracker-auth", name = "userManager")
+public interface UserManager {
+
+    @GetMapping("/find-user-id-by-username")
+    public RootEntity<Long> findUserIdByUsername();
+}

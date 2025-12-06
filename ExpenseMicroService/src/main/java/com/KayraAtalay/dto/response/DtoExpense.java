@@ -3,6 +3,7 @@ package com.KayraAtalay.dto.response;
 import com.KayraAtalay.enums.Category;
 import com.KayraAtalay.shared.dto.DtoBase;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -10,7 +11,7 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 public class DtoExpense extends DtoBase {
 
     private Long userId;

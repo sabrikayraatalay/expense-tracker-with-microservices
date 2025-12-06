@@ -134,4 +134,14 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
         return new AuthResponse(accessToken, savedRefreshToken.getRefreshToken());
     }
 
+    @Override
+    public Long findUserIdByUsername(String username) {
+        Optional<User> optUser = userRepository.findByUsername(username);
+
+        if(optUser.isEmpty()) {
+            throw new BaseException(new ErrorMessage(MessageType.USERNAME_NOT_FOUND, username));
+        }
+        return optUser.get().getId();
+    }
+
 }

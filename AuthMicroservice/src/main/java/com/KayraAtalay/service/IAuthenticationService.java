@@ -14,4 +14,6 @@ public interface IAuthenticationService {
 
     public AuthResponse refreshToken(RefreshTokenRequest request);
 
+    public Long findUserIdByUsername(String username);
+
 }

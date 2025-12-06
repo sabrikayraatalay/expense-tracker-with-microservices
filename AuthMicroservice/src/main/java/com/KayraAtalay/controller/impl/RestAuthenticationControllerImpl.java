@@ -7,10 +7,8 @@ import com.KayraAtalay.dto.response.DtoUser;
 import com.KayraAtalay.shared.response.RestBaseController;
 import com.KayraAtalay.shared.response.RootEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import com.KayraAtalay.controller.IRestAuthenticationController;
 
@@ -18,29 +16,42 @@ import com.KayraAtalay.service.IAuthenticationService;
 
 import jakarta.validation.Valid;
 
+import java.security.Principal;
+
+import static com.KayraAtalay.config.RestApis.*;
+
 @RestController
-@RequestMapping("/rest/api/expense-tracker")
+@RequestMapping(AUTH)
 public class RestAuthenticationControllerImpl extends RestBaseController implements IRestAuthenticationController {
 
     @Autowired
     private IAuthenticationService authenticationService;
 
-    @PostMapping("/register")
+    @PostMapping(REGISTER)
     @Override
     public RootEntity<DtoUser> register(@Valid @RequestBody AuthRequest request) {
         return ok(authenticationService.register(request));
     }
 
-    @PostMapping("/authenticate")
+    @PostMapping(AUTHENTICATE)
     @Override
     public RootEntity<AuthResponse> authenticate(@Valid @RequestBody AuthRequest request) {
         return ok(authenticationService.authenticate(request));
     }
 
-    @PostMapping("/refreshToken")
+    @PostMapping(REFRESH_TOKEN)
     @Override
     public RootEntity<AuthResponse> refreshToken(@Valid @RequestBody RefreshTokenRequest request) {
         return ok(authenticationService.refreshToken(request));
     }
+
+    @GetMapping(FIND_USER_ID_BY_USERNAME)
+    @Override
+    @PreAuthorize("isAuthenticated()")
+    public RootEntity<Long> findUserIdByUsername(Principal principal) {
+        String username = principal.getName();
+        return ok(authenticationService.findUserIdByUsername(username));
+    }
+
 
 }
