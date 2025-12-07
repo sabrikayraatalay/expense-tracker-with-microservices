@@ -58,7 +58,7 @@ public class ExpenseServiceImpl implements IExpenseService {
     public DtoExpense findExpenseById(Long expenseId) {
         Long userId = getCurrentUserId();
 
-        Optional<Expense> optExpense = expenseRepository.FindByUserIdAndId(userId, expenseId);
+        Optional<Expense> optExpense = expenseRepository.findByUserIdAndId(userId, expenseId);
 
         if (optExpense.isEmpty()) {
             throw new BaseException(new ErrorMessage(MessageType.EXPENSE_NOT_FOUND, expenseId.toString()));
@@ -82,7 +82,7 @@ public class ExpenseServiceImpl implements IExpenseService {
     public DtoExpense updateExpense(Long expenseId, DtoExpenseIU expenseRequest) {
         Long userId = getCurrentUserId();
 
-        Optional<Expense> optExpense = expenseRepository.FindByUserIdAndId(userId, expenseId);
+        Optional<Expense> optExpense = expenseRepository.findByUserIdAndId(userId, expenseId);
 
         if(optExpense.isEmpty()){
             throw new BaseException(new ErrorMessage(MessageType.EXPENSE_NOT_FOUND, expenseId.toString()));
@@ -101,7 +101,7 @@ public class ExpenseServiceImpl implements IExpenseService {
     @Override
     public Boolean deleteExpenseById(Long expenseId) {
         Long userId = getCurrentUserId();
-        Optional<Expense> optExpense = expenseRepository.FindByUserIdAndId(userId, expenseId);
+        Optional<Expense> optExpense = expenseRepository.findByUserIdAndId(userId, expenseId);
         if(optExpense.isEmpty()){
             throw new BaseException(new ErrorMessage(MessageType.EXPENSE_NOT_FOUND, expenseId.toString()));
         }
@@ -111,7 +111,7 @@ public class ExpenseServiceImpl implements IExpenseService {
     }
 
     @Override
-    public List<DtoExpense> findAllExpensesByCategoryId(Category category) {
+    public List<DtoExpense> findAllExpensesByCategory(Category category) {
         Long userId = getCurrentUserId();
         List<Expense> expensesByCategory = expenseRepository.findAllByUserIdAndCategory(userId, category);
 

@@ -12,17 +12,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
+import static com.KayraAtalay.config.RestApis.*;
 import com.KayraAtalay.jwt.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-
-    public static final String REGISTER = "/rest/api/expense-tracker/register";
-    public static final String AUTHENTICATE = "/rest/api/expense-tracker/authenticate";
-    public static final String REFRESH_TOKEN = "/rest/api/expense-tracker/refreshToken";
 
     private static final String[] SWAGGER_WHITELIST = {
             "/swagger-ui/**",
@@ -43,7 +39,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeHttpRequests(request -> request.requestMatchers(REGISTER, AUTHENTICATE, REFRESH_TOKEN)
+                .authorizeHttpRequests(request -> request.requestMatchers(AUTH + REGISTER, AUTH + AUTHENTICATE, AUTH + REFRESH_TOKEN)
                         .permitAll()
                         .requestMatchers(SWAGGER_WHITELIST).permitAll().anyRequest().authenticated())
                 .exceptionHandling().authenticationEntryPoint(authEntryPoint).and()

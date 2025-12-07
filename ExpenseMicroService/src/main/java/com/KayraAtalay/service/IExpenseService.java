@@ -21,7 +21,7 @@ public interface IExpenseService {
 
     public Boolean deleteExpenseById(Long expenseId);
 
-    public List<DtoExpense> findAllExpensesByCategoryId(Category category);
+    public List<DtoExpense> findAllExpensesByCategory(Category category);
 
 
 }
