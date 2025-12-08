@@ -6,5 +6,6 @@ dependencies {
     implementation libs.lombok
     annotationProcessor libs.lombok
     implementation libs.swagger
+    implementation libs.springCloudConfigClient
 
 }

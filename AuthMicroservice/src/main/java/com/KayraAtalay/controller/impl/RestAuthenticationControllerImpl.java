@@ -6,6 +6,7 @@ import com.KayraAtalay.dto.response.AuthResponse;
 import com.KayraAtalay.dto.response.DtoUser;
 import com.KayraAtalay.shared.response.RestBaseController;
 import com.KayraAtalay.shared.response.RootEntity;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +49,7 @@ public class RestAuthenticationControllerImpl extends RestBaseController impleme
     @GetMapping(FIND_USER_ID_BY_USERNAME)
     @Override
     @PreAuthorize("isAuthenticated()")
+    @Hidden
     public RootEntity<Long> findUserIdByUsername(Principal principal) {
         String username = principal.getName();
         return ok(authenticationService.findUserIdByUsername(username));
